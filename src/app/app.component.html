@@ -1,0 +1,13 @@
+<div class="text-end pb-2 col-12">
+    <a mat-raised-button href="/" class="me-2"> Home </a>
+    @if (!userService.currentUserSignal()) {
+        <a mat-raised-button href="/login"> Login </a>
+    } @else {
+        <button mat-button [matMenuTriggerFor]="menu">Logged in as {{ userService.currentUserSignal()?.email }}</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="userService.logout()">Log out</button>
+        </mat-menu>
+    }
+</div>
+
+<router-outlet></router-outlet>

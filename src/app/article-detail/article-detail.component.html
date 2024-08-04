@@ -1,0 +1,29 @@
+<form [formGroup]="articleForm">
+
+    <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input type="text" matInput formControlName="title">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field>
+        <mat-label>Content</mat-label>
+        <textarea matInput formControlName="content"></textarea>
+    </mat-form-field>
+
+    <br>
+    <mat-form-field>
+        <mat-label>Image URL</mat-label>
+        <input type="text" matInput formControlName="image">
+    </mat-form-field>
+
+    @if (userService.currentUserSignal()) {
+        <br>
+        @if (article) {
+        <button type="submit" mat-raised-button [disabled]="articleForm.invalid" (click)="edit()">Save</button>
+        } @else {
+        <button mat-raised-button [disabled]="articleForm.invalid" (click)="add()">Add</button>
+        }
+    }
+
+</form>

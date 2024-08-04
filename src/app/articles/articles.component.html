@@ -1,0 +1,33 @@
+<h1>Articles</h1>
+
+<a mat-raised-button href="articles/add" class="mb-2">Add article</a>
+
+<table mat-table [dataSource]="articles" class="mat-elevation-z8">
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title. </th>
+        <td mat-cell *matCellDef="let article"> {{article.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="content">
+        <th mat-header-cell *matHeaderCellDef> Content </th>
+        <td mat-cell *matCellDef="let article"> {{article.content}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="link">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let article">
+            <a mat-raised-button [routerLink]="['/articles', article.id]">View & edit</a>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let article">
+            <button mat-mini-fab (click)="deleteArticle(article.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
